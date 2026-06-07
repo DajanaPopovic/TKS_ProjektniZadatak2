@@ -58,4 +58,4 @@ REST API testovi su implementirani kao Postman kolekcija.
 
 ## Autor
 
-Dajana Popović (1158-21) — Elektrotehnički fakultet Banja Luka
+Dajana Popović 
