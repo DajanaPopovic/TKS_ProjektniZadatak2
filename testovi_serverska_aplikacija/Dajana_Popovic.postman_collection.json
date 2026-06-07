@@ -1,0 +1,267 @@
+{
+  "info": {
+    "_postman_id": "813b076d-49c4-4752-8749-7ad1cce594b2",
+    "name": "Dajana_Popovic",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "51230861",
+    "_collection_link": "https://go.postman.co/collection/51230861-813b076d-49c4-4752-8749-7ad1cce594b2?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Add Student",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// Status code",
+              "pm.test(\"Student created successfully (status 200)\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "// Response body exists",
+              "pm.test(\"Response body is not empty\", function () {",
+              "    pm.expect(pm.response.json()).to.not.be.empty;",
+              "});",
+              "",
+              "// studentName exists",
+              "pm.test(\"Response has studentName field\", function () {",
+              "    pm.expect(pm.response.json()).to.have.property(\"studentName\");",
+              "});",
+              "",
+              "//  studentName value is correct",
+              "pm.test(\"Student name is Marko\", function () {",
+              "    pm.expect(pm.response.json().studentName).to.eql(\"Marko\");",
+              "});",
+              "",
+              "// studentEmail exists",
+              "pm.test(\"Response has studentEmail field\", function () {",
+              "    pm.expect(pm.response.json()).to.have.property(\"studentEmail\");",
+              "});",
+              "",
+              "// studentEmail value is correct",
+              "pm.test(\"Student email is correct\", function () {",
+              "    pm.expect(pm.response.json().studentEmail).to.eql(\"marko@mail.com\");",
+              "});",
+              "",
+              "//  studentBranch exists",
+              "pm.test(\"Response has studentBranch field\", function () {",
+              "    pm.expect(pm.response.json()).to.have.property(\"studentBranch\");",
+              "});",
+              "",
+              "// studentBranch value is allowed",
+              "pm.test(\"Student branch is valid\", function () {",
+              "    pm.expect(pm.response.json().studentBranch).to.eql(\"BCA\");",
+              "});",
+              "",
+              "",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"studentId\": \"1\",\n    \"studentName\": \"Marko\",\n    \"studentEmail\": \"marko@mail.com\",\n    \"studentBranch\": \"BCA\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/student",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "student"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Student",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// Status code",
+              "pm.test(\"GET one student - status 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "// Response body exists",
+              "pm.test(\"GET one student - response is not empty\", function () {",
+              "    pm.expect(pm.response.json()).to.not.be.empty;",
+              "});",
+              "",
+              "// studentName exists",
+              "pm.test(\"GET one student - has studentName field\", function () {",
+              "    pm.expect(pm.response.json()).to.have.property(\"studentName\");",
+              "});",
+              "",
+              "// studentEmail exists",
+              "pm.test(\"GET one student - has studentEmail field\", function () {",
+              "    pm.expect(pm.response.json()).to.have.property(\"studentEmail\");",
+              "});",
+              "",
+              "// studentBranch exists",
+              "pm.test(\"GET one student - has studentBranch field\", function () {",
+              "    pm.expect(pm.response.json()).to.have.property(\"studentBranch\");",
+              "});",
+              "",
+              "pm.test(\"GET one student - studentName is correct\", function () {",
+              "    pm.expect(pm.response.json().studentName).to.eql(\"Marko\");",
+              "});",
+              "",
+              "pm.test(\"GET one student - studentEmail is correct\", function () {",
+              "    pm.expect(pm.response.json().studentEmail).to.eql(\"marko@mail.com\");",
+              "});",
+              "",
+              "pm.test(\"GET one student - studentBranch is valid\", function () {",
+              "    pm.expect(pm.response.json().studentBranch).to.eql(\"BCA\");",
+              "});",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/student/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "student",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Student",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"PUT returns status 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Student name is updated\", function () {",
+              "    pm.expect(pm.response.json().studentName).to.eql(\"Petar\");",
+              "});",
+              "",
+              "pm.test(\"Student email is updated\", function () {",
+              "    pm.expect(pm.response.json().studentEmail).to.eql(\"petar@mail.com\");",
+              "});",
+              "",
+              "pm.test(\"Student branch is updated\", function () {",
+              "     pm.expect(pm.response.json().studentBranch).to.eql(\"MCA\");",
+              "});",
+              "",
+              "",
+              "",
+              "",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\t\"studentId\": \"1\",\n    \"studentName\": \"Petar\",\n    \"studentEmail\": \"petar@mail.com\",\n    \"studentBranch\": \"MCA\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/student/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "student",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Student",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });",
+              "",
+              "pm.test(\"Student deleted successfully\", function () { var jsonData = pm.response.json(); pm.expect(jsonData.message).to.eql('Student deleted successfully'); });",
+              "",
+              "",
+              "",
+              "",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "http://localhost:8080/student/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "student",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
